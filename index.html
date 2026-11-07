@@ -67,8 +67,11 @@
 
 <script>
         // Username Scanner Logic
-        document.getElementById('scanBtn').addEventListener('click', function() {
-            const username = document.getElementById('usernameInput').value.trim();
+        const scanBtn = document.getElementById('scanBtn');
+        const usernameInput = document.getElementById('usernameInput');
+
+        function executeScan() {
+            const username = usernameInput.value.trim();
             const output = document.getElementById('usernameResults');
             
             if (!username) {
@@ -82,35 +85,21 @@
             text += [+] Instagram:  https://instagram.com/${username}\n;
             text += [+] Reddit:     https://reddit.com/user/${username}\n;
             text += [+] Telegram:   https://t.me/${username}\n;
-            text += \n> تم توليد الروابط بنجاح. اضغط عليها للتوجيه المباشر.;
+            text += \n> تم توليد الروابط بنجاح.;
             
             output.innerText = text;
-        });
+        }
 
-        // IP Intelligence Logic
-        document.getElementById('ipBtn').addEventListener('click', async function() {
-            const ip = document.getElementById('ipInput').value.trim();
-            const output = document.getElementById('ipResults');
-            
-            if (!ip) {
-                output.innerText = '> خطأ: يرجى إدخال عنوان IP!';
-                return;
-            }
-
-            output.innerText = > جاري الاستعلام عن بيانات ${ip}...\n;
-
-            try {
-                let res = await fetch(https://ipapi.co/${ip}/json/);
-                let data = await res.json();
-                if (data.error) {
-                    output.innerText = > خطأ من الخادم: ${data.reason || 'تعذر جلب البيانات'};
-                    return;
-                }
-                output.innerText = [+] العنوان: ${data.ip}\n[+] الدولة: ${data.country_name} (${data.country_code})\n[+] المدينة: ${data.city}\n[+] مزود الخدمة: ${data.org};
-            } catch (e) {
-                output.innerText = > تعذر الاتصال بخدمة التحليل. تأكد من اتصال الإنترنت.;
-            }
-        });
-    </script>
+        if (scanBtn) {
+            scanBtn.onclick = executeScan;
+            scanBtn.ontouchstart = executeScan; // دعم لمس شاشة الآيباد
+        }
+        
+        if (usernameInput) {
+            usernameInput.onkeypress = function(e) {
+                if (e.key === 'Enter') { executeScan(); }
+            };
+        }
+</script>
 </body>
 </html>
