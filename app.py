@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import requests
 
-app = Flask(name)
+app = Flask(__name__)
 CORS(app)  # لسماح للواجهة بالاتصال بالسيرفر بدون مشاكل
 
 @app.route('/api/osint/username', methods=['GET'])
