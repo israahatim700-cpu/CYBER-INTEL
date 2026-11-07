@@ -3,33 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CYBER-INTEL // OSINT Dashboard V0.1</title>
+    <title>CYBER-INTEL // OSINT Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #080c14;
-            --card-bg: #0f172a;
-            --accent-blue: #00f0ff;
-            --accent-glow: rgba(0, 240, 255, 0.4);
+            --bg-color: #0b0f19; /* خلفية داكنة وهادئة جداً */
+            --card-bg: #131c2e; /* لون كروت أهدأ وأنيق */
+            --accent-cyan: #38bdf8; /* أزرق سماوي هادئ ومريح للعين بدل الأخضر */
+            --accent-green: #34d399; /* أخضر زمردي هادئ للروابط */
             --text-main: #e2e8f0;
             --text-muted: #64748b;
             --border-color: #1e293b;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Tajawal', sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; }
-        .header { text-align: center; margin-bottom: 30px; border-bottom: 1px solid var(--accent-blue); padding-bottom: 15px; width: 100%; max-width: 900px; }
-        .header h1 { font-family: 'Share Tech Mono', monospace; color: var(--accent-blue); font-size: 2.2rem; text-shadow: 0 0 10px var(--accent-glow); }
-        .header p { color: var(--text-muted); font-size: 0.95rem; margin-top: 5px; }
-        .container { width: 100%; max-width: 900px; display: flex; flex-direction: column; gap: 20px; }
-        .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); position: relative; overflow: hidden; }
-        .card::before { content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%; background: var(--accent-blue); }
-        .card h2 { color: var(--accent-blue); font-size: 1.2rem; margin-bottom: 15px; }
-        .input-group { display: flex; gap: 10px; margin-bottom: 15px; }
-        input { flex: 1; background: #040711; border: 1px solid var(--border-color); border-radius: 4px; padding: 12px; color: var(--accent-blue); font-size: 1rem; outline: none; }
-        button { background: transparent; border: 1px solid var(--accent-blue); color: var(--accent-blue); padding: 12px 24px; border-radius: 4px; cursor: pointer; font-weight: bold; }
-        button:hover { background: var(--accent-blue); color: var(--bg-color); }
-        .results { background: #040711; border-radius: 4px; padding: 15px; font-family: 'Share Tech Mono', monospace; font-size: 0.9rem; min-height: 90px; max-height: 250px; overflow-y: auto; border: 1px solid #101b2d; white-space: pre-wrap; word-break: break-all; }
-        footer { margin-top: 40px; color: var(--text-muted); font-size: 0.8rem; text-align: center; }
+        body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 15px; }
+        .header { text-align: center; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; width: 100%; max-width: 800px; }
+        .header h1 { font-family: 'Share Tech Mono', monospace; color: var(--accent-cyan); font-size: 1.8rem; letter-spacing: 1px; }
+        .header p { color: var(--text-muted); font-size: 0.85rem; margin-top: 5px; }
+        .container { width: 100%; max-width: 800px; display: flex; flex-direction: column; gap: 15px; }
+        .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .card h2 { color: var(--accent-cyan); font-size: 1.1rem; margin-bottom: 10px; }
+        .input-group { display: flex; gap: 8px; margin-bottom: 10px; }
+        input { flex: 1; background: #070a12; border: 1px solid var(--border-color); border-radius: 4px; padding: 10px; color: var(--accent-cyan); font-size: 0.95rem; outline: none; }
+        input:focus { border-color: var(--accent-cyan); }
+        button { background: #070a12; border: 1px solid var(--accent-cyan); color: var(--accent-cyan); padding: 10px 18px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 0.9rem; transition: 0.2s; }
+        button:hover { background: rgba(56, 189, 248, 0.1); }
+        button:active { background: var(--accent-cyan); color: var(--bg-color); }
+        .results { background: #070a12; border-radius: 4px; padding: 12px; font-family: 'Share Tech Mono', monospace; font-size: 0.85rem; min-height: 70px; max-height: 220px; overflow-y: auto; border: 1px solid var(--border-color); white-space: pre-wrap; word-break: break-all; color: #94a3b8; }
+        .result-link { display: block; color: var(--accent-green); text-decoration: none; margin: 6px 0; padding: 4px; background: rgba(52, 211, 153, 0.05); border-radius: 3px; }
+        .result-link:hover { background: rgba(52, 211, 153, 0.15); text-decoration: underline; }
+        footer { margin-top: 30px; color: var(--text-muted); font-size: 0.75rem; text-align: center; }
     </style>
 </head>
 <body>
@@ -50,8 +53,9 @@
             <div class="results" id="usernameResults">> بانتظار إدخال اسم المستخدم...</div>
         </div>
 
-        <!-- IP Intelligence -->
-        <div class="card">
+        <!-- IP & Domain Intelligence -->
+
+<div class="card">
             <h2>🌐 IP & Domain Intelligence (تحليل IP والدومين)</h2>
             <div class="input-group">
                 <input type="text" id="ipInput" placeholder="أدخل عنوان IP (مثال: 8.8.8.8)...">
@@ -65,41 +69,83 @@
         <p>CYBER-INTEL OSINT FRAMEWORK v0.1 — FOR LEGAL RESEARCH ONLY</p>
     </footer>
 
-<script>
+    <script>
         // Username Scanner Logic
         const scanBtn = document.getElementById('scanBtn');
         const usernameInput = document.getElementById('usernameInput');
+        const usernameResults = document.getElementById('usernameResults');
 
         function executeScan() {
             const username = usernameInput.value.trim();
-            const output = document.getElementById('usernameResults');
-            
             if (!username) {
-                output.innerText = '> خطأ: يرجى إدخال اسم مستخدم أولاً!';
+                usernameResults.innerHTML = '<span style="color: #f87171;">[!] يرجى إدخال اسم مستخدم أولاً.</span>';
                 return;
             }
 
-            let text = > جاري البحث عن الأثر الرقمي لـ [${username}]...\n\n;
-            text += [+] GitHub:     https://github.com/${username}\n;
-            text += [+] Twitter/X:  https://x.com/${username}\n;
-            text += [+] Instagram:  https://instagram.com/${username}\n;
-            text += [+] Reddit:     https://reddit.com/user/${username}\n;
-            text += [+] Telegram:   https://t.me/${username}\n;
-            text += \n> تم توليد الروابط بنجاح.;
-            
-            output.innerText = text;
+            let html = [+] جاري فحص الأثر الرقمي لـ: <b style="color: #e2e8f0;">${username}</b>\n\n;
+            const platforms = [
+                { name: "GitHub", url: https://github.com/${username} },
+                { name: "X (Twitter)", url: https://x.com/${username} },
+                { name: "Instagram", url: https://instagram.com/${username} },
+                { name: "Telegram", url: https://t.me/${username} },
+                { name: "Reddit", url: https://reddit.com/user/${username} }
+            ];
+
+            platforms.forEach(p => {
+                html += <a class="result-link" href="${p.url}" target="_blank">🔗 [${p.name}] - ${p.url}</a>;
+            });
+
+            usernameResults.innerHTML = html;
         }
 
         if (scanBtn) {
             scanBtn.onclick = executeScan;
-            scanBtn.ontouchstart = executeScan; // دعم لمس شاشة الآيباد
+            scanBtn.ontouchstart = executeScan;
         }
-        
         if (usernameInput) {
             usernameInput.onkeypress = function(e) {
                 if (e.key === 'Enter') { executeScan(); }
             };
         }
-</script>
+
+        // IP Intelligence Logic
+        const ipBtn = document.getElementById('ipBtn');
+        const ipInput = document.getElementById('ipInput');
+        const ipResults = document.getElementById('ipResults');
+
+        async function executeIPCheck() {
+            const ip = ipInput.value.trim();
+            if (!ip) {
+                ipResults.innerHTML = '<span style="color: #f87171;">[!] يرجى إدخال عنوان IP.</span>';
+                return;
+            }
+            ipResults.innerHTML = [~] جاري الاستعلام الفني عن العقدة: ${ip}...;
+            try {
+                let res = await fetch(https://ipapi.co/${ip}/json/);
+                let data = await res.json();
+                if (data.error) {
+                    ipResults.innerHTML = <span style="color: #f87171;">[!] خطأ بالاستعلام: ${data.reason || 'تعذر جلب البيانات'}</span>;
+                    return;
+                }
+                ipResults.innerHTML = <span style="color: #38bdf8;">[✓] نتائج تحليل الـ IP:</span>\n +
+                    • الدولة: ${data.country_name} (${data.country_code})\n +
+                    • المدينة: ${data.city || 'غير محدد'}\n +
+                    • مزود الخدمة: ${data.org || 'غير متاح'}\n +
+                    • الإحداثيات: Lat ${data.latitude} / Lon ${data.longitude};
+            } catch (err) {
+                ipResults.innerHTML = <span style="color: #f87171;">[!] تعذر الاتصال بخدمة التحليل الشبكي.</span>;
+            }
+        }
+
+        if (ipBtn) {
+            ipBtn.onclick = executeIPCheck;
+            ipBtn.ontouchstart = executeIPCheck;
+        }
+        if (ipInput) {
+            ipInput.onkeypress = function(e) {
+                if (e.key === 'Enter') { executeIPCheck(); }
+            };
+        }
+    </script>
 </body>
 </html>
