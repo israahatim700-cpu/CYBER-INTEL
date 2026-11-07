@@ -13,146 +13,23 @@
             --accent-glow: rgba(0, 240, 255, 0.4);
             --text-main: #e2e8f0;
             --text-muted: #64748b;
-            --danger: #ff0055;
             --border-color: #1e293b;
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Tajawal', 'Share Tech Mono', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--accent-blue);
-            padding-bottom: 15px;
-            width: 100%;
-            max-width: 900px;
-        }
-
-        .header h1 {
-            font-family: 'Share Tech Mono', monospace;
-            color: var(--accent-blue);
-            font-size: 2.2rem;
-            text-shadow: 0 0 10px var(--accent-glow);
-            letter-spacing: 2px;
-        }
-
-        .header p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-top: 5px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 900px;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--accent-blue);
-        }
-
-        .card h2 {
-            color: var(--accent-blue);
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .input-group {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        input {
-            flex: 1;
-            background: #040711;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            padding: 12px;
-            color: var(--accent-blue);
-            font-size: 1rem;
-            outline: none;
-            transition: border 0.3s;
-        }
-
-        input:focus {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 8px var(--accent-glow);
-        }
-
-        button {
-            background: transparent;
-            border: 1px solid var(--accent-blue);
-            color: var(--accent-blue);
-            padding: 12px 24px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        button:hover {
-            background: var(--accent-blue);
-            color: var(--bg-color);
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-
-        .results {
-            background: #040711;
-            border-radius: 4px;
-            padding: 15px;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.9rem;
-            min-height: 80px;
-            max-height: 250px;
-            overflow-y: auto;
-            border: 1px solid #101b2d;
-            white-space: pre-wrap;
-        }
-
-footer {
-            margin-top: 40px;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            text-align: center;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Tajawal', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        .header { text-align: center; margin-bottom: 30px; border-bottom: 1px solid var(--accent-blue); padding-bottom: 15px; width: 100%; max-width: 900px; }
+        .header h1 { font-family: 'Share Tech Mono', monospace; color: var(--accent-blue); font-size: 2.2rem; text-shadow: 0 0 10px var(--accent-glow); }
+        .header p { color: var(--text-muted); font-size: 0.95rem; margin-top: 5px; }
+        .container { width: 100%; max-width: 900px; display: flex; flex-direction: column; gap: 20px; }
+        .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 20px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); position: relative; overflow: hidden; }
+        .card::before { content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%; background: var(--accent-blue); }
+        .card h2 { color: var(--accent-blue); font-size: 1.2rem; margin-bottom: 15px; }
+        .input-group { display: flex; gap: 10px; margin-bottom: 15px; }
+        input { flex: 1; background: #040711; border: 1px solid var(--border-color); border-radius: 4px; padding: 12px; color: var(--accent-blue); font-size: 1rem; outline: none; }
+        button { background: transparent; border: 1px solid var(--accent-blue); color: var(--accent-blue); padding: 12px 24px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        button:hover { background: var(--accent-blue); color: var(--bg-color); }
+        .results { background: #040711; border-radius: 4px; padding: 15px; font-family: 'Share Tech Mono', monospace; font-size: 0.9rem; min-height: 90px; max-height: 250px; overflow-y: auto; border: 1px solid #101b2d; white-space: pre-wrap; word-break: break-all; }
+        footer { margin-top: 40px; color: var(--text-muted); font-size: 0.8rem; text-align: center; }
     </style>
 </head>
 <body>
@@ -168,29 +45,19 @@ footer {
             <h2>🔍 Username Scanner (ماسح اسم المستخدم)</h2>
             <div class="input-group">
                 <input type="text" id="usernameInput" placeholder="أدخل اسم المستخدم (مثال: admin)...">
-                <button onclick="scanUsername()">فحص المنصات</button>
+                <button type="button" id="scanBtn">فحص المنصات</button>
             </div>
             <div class="results" id="usernameResults">> بانتظار إدخال اسم المستخدم...</div>
         </div>
 
-        <!-- IP & Domain Intelligence -->
+        <!-- IP Intelligence -->
         <div class="card">
             <h2>🌐 IP & Domain Intelligence (تحليل IP والدومين)</h2>
             <div class="input-group">
                 <input type="text" id="ipInput" placeholder="أدخل عنوان IP (مثال: 8.8.8.8)...">
-                <button onclick="scanIP()">تحليل الـ IP</button>
+                <button type="button" id="ipBtn">تحليل الـ IP</button>
             </div>
             <div class="results" id="ipResults">> بانتظار إدخال IP للتحليل...</div>
-        </div>
-
-        <!-- Threat & Link Checker -->
-        <div class="card">
-            <h2>🛡️ Threat Detection (كشف مؤشرات التصيد)</h2>
-            <div class="input-group">
-                <input type="text" id="linkInput" placeholder="أدخل الرابط للفحص (مثال: https://example.com)...">
-                <button onclick="checkLink()">فحص الرابط</button>
-            </div>
-            <div class="results" id="linkResults">> بانتظار إدخال الرابط...</div>
         </div>
     </div>
 
@@ -198,105 +65,52 @@ footer {
         <p>CYBER-INTEL OSINT FRAMEWORK v0.1 — FOR LEGAL RESEARCH ONLY</p>
     </footer>
 
-    <script>
-        // 1. Username Scanner
-        function scanUsername() {
-            const usernameInput = document.getElementById('usernameInput');
+<script>
+        // Username Scanner Logic
+        document.getElementById('scanBtn').addEventListener('click', function() {
+            const username = document.getElementById('usernameInput').value.trim();
             const output = document.getElementById('usernameResults');
-            
-            if (!usernameInput) return;
-            const username = usernameInput.value.trim();
             
             if (!username) {
                 output.innerText = '> خطأ: يرجى إدخال اسم مستخدم أولاً!';
                 return;
             }
 
-            let resultText = > جاري البحث عن [${username}] في المنصات...\n\n;
+            let text = > جاري البحث عن الأثر الرقمي لـ [${username}]...\n\n;
+            text += [+] GitHub:     https://github.com/${username}\n;
+            text += [+] Twitter/X:  https://x.com/${username}\n;
+            text += [+] Instagram:  https://instagram.com/${username}\n;
+            text += [+] Reddit:     https://reddit.com/user/${username}\n;
+            text += [+] Telegram:   https://t.me/${username}\n;
+            text += \n> تم توليد الروابط بنجاح. اضغط عليها للتوجيه المباشر.;
             
-            const platforms = [
-                { name: 'GitHub', url: https://github.com/${username} },
-                { name: 'Twitter/X', url: https://x.com/${username} },
-                { name: 'Instagram', url: https://instagram.com/${username} },
-                { name: 'Reddit', url: https://reddit.com/user/${username} },
-                { name: 'Telegram', url: https://t.me/${username} }
-            ];
+            output.innerText = text;
+        });
 
-            platforms.forEach(p => {
-                resultText += [+] ${p.name}: ${p.url}\n;
-            });
-            resultText += \n> اكتمل توليد الروابط المباشرة لتتبع الأثر الرقمي.;
-            
-            output.innerText = resultText;
-        }
-
-        // 2. IP Intelligence
-        async function scanIP() {
-            const ipInput = document.getElementById('ipInput');
+        // IP Intelligence Logic
+        document.getElementById('ipBtn').addEventListener('click', async function() {
+            const ip = document.getElementById('ipInput').value.trim();
             const output = document.getElementById('ipResults');
-            if (!ipInput) return;
-            const ip = ipInput.value.trim();
-
+            
             if (!ip) {
                 output.innerText = '> خطأ: يرجى إدخال عنوان IP!';
                 return;
             }
 
-            output.innerText = > جاري الاتصال بقاعدة البيانات المجانية لاستعلام ${ip}...\n;
+            output.innerText = > جاري الاستعلام عن بيانات ${ip}...\n;
 
             try {
-                const response = await fetch(https://ipapi.co/${ip}/json/);
-                if (!response.ok) throw new Error('فشل جلب البيانات');
-                const data = await response.json();
-
+                let res = await fetch(https://ipapi.co/${ip}/json/);
+                let data = await res.json();
                 if (data.error) {
-                    output.innerText = > خطأ: ${data.reason};
+                    output.innerText = > خطأ من الخادم: ${data.reason || 'تعذر جلب البيانات'};
                     return;
                 }
-
-output.innerText = 
-[+] العنوان: ${data.ip}
-[+] الدولة: ${data.country_name} (${data.country_code})
-[+] المدينة: ${data.city}
-[+] مزود الخدمة (ISP): ${data.org}
-[+] الإحداثيات: ${data.latitude}, ${data.longitude};
-            } catch (err) {
-                output.innerText = > تعذر جلب البيانات: تأكد من صحة IP أو الاتصال بالنظام.;
+                output.innerText = [+] العنوان: ${data.ip}\n[+] الدولة: ${data.country_name} (${data.country_code})\n[+] المدينة: ${data.city}\n[+] مزود الخدمة: ${data.org};
+            } catch (e) {
+                output.innerText = > تعذر الاتصال بخدمة التحليل. تأكد من اتصال الإنترنت.;
             }
-        }
-
-        // 3. Simple Phishing/Link Threat Checker
-        function checkLink() {
-            const linkInput = document.getElementById('linkInput');
-            const output = document.getElementById('linkResults');
-            if (!linkInput) return;
-            const link = linkInput.value.trim();
-
-            if (!link) {
-                output.innerText = '> خطأ: يرجى إدخال الرابط!';
-                return;
-            }
-
-            output.innerText = > جاري تحليل أنماط الرابط...\n;
-            
-            let warnings = [];
-            
-            if (!link.startsWith('https://')) {
-                warnings.push('⚠️ الرابط لا يستخدم بروتوكول مشفر (No HTTPS)');
-            }
-            if (link.includes('@')  link.includes('.zip')  link.includes('.exe')) {
-                warnings.push('🚨 يحتوي الرابط على امتدادات أو صيغ مشبوهة');
-            }
-            if (link.length > 75) {
-                warnings.push('⚠️ الرابط طويل جداً بشكل غير طبيعي (قد يعكس تمويه)');
-            }
-
-            if (warnings.length > 0) {
-                output.innerText += [!] تحذيرات أمنية متوقعة:\n + warnings.join('\n');
-            } else {
-                output.innerText += [✓] الرابط يبدو طبيعياً بنسبة أولية (لا تتردد في التحقق عبر فايروس توتال).;
-            }
-        }
+        });
     </script>
 </body>
 </html>
