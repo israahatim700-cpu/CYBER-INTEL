@@ -96,5 +96,5 @@ def check_username():
             
     return jsonify({"username": username, "results": results})
 
-if __name__ == '__main__':
+if name == 'main':
     app.run(host='0.0.0.0', port=5000)
