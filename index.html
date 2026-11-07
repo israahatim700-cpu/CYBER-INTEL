@@ -201,15 +201,18 @@ footer {
     <script>
         // 1. Username Scanner
         function scanUsername() {
-            const username = document.getElementById('usernameInput').value.trim();
+            const usernameInput = document.getElementById('usernameInput');
             const output = document.getElementById('usernameResults');
+            
+            if (!usernameInput) return;
+            const username = usernameInput.value.trim();
             
             if (!username) {
                 output.innerText = '> خطأ: يرجى إدخال اسم مستخدم أولاً!';
                 return;
             }
 
-            output.innerText = > جاري البحث عن [${username}] في المنصات...\n;
+            let resultText = > جاري البحث عن [${username}] في المنصات...\n\n;
             
             const platforms = [
                 { name: 'GitHub', url: https://github.com/${username} },
@@ -220,15 +223,19 @@ footer {
             ];
 
             platforms.forEach(p => {
-                output.innerText += [+] ${p.name}: ${p.url}\n;
+                resultText += [+] ${p.name}: ${p.url}\n;
             });
-            output.innerText += \n> اكتمل توليد الروابط المباشرة لتتبع الأثر الرقمي.;
+            resultText += \n> اكتمل توليد الروابط المباشرة لتتبع الأثر الرقمي.;
+            
+            output.innerText = resultText;
         }
 
         // 2. IP Intelligence
         async function scanIP() {
-            const ip = document.getElementById('ipInput').value.trim();
+            const ipInput = document.getElementById('ipInput');
             const output = document.getElementById('ipResults');
+            if (!ipInput) return;
+            const ip = ipInput.value.trim();
 
             if (!ip) {
                 output.innerText = '> خطأ: يرجى إدخال عنوان IP!';
@@ -260,8 +267,10 @@ output.innerText =
 
         // 3. Simple Phishing/Link Threat Checker
         function checkLink() {
-            const link = document.getElementById('linkInput').value.trim();
+            const linkInput = document.getElementById('linkInput');
             const output = document.getElementById('linkResults');
+            if (!linkInput) return;
+            const link = linkInput.value.trim();
 
             if (!link) {
                 output.innerText = '> خطأ: يرجى إدخال الرابط!';
