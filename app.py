@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, render_template_string
 import requests
 
-app = Flask(name)
+app = Flask(__name__)
 
 HTML_TEMPLATE = """
 <!DOCTYPE html>
